@@ -44,7 +44,54 @@
   * Unlock the drive: `sudo dislocker-fuse -V <drive partition> -u<password> -- /media/bitlocker`
   * Mount the drive: `sudo mount /media/bitlocker/dislocker-file /media/usb -o loop`
 
+## RE / Binary Exploitation
+
+### objdump
+
+
+
+### Pwndbg
+
+* [Pwndbg](https://github.com/pwndbg/pwndbg) is a GDB plug-in to assist with reverse engineering and exploitation development
+* Standard GDB commands:
+  * `b 0x1337` - break at address 0x1337
+  * `c` - continue execution until the next breakpoint or end of program
+  * `si` - single step
+  * `fin` - execute until the end of current function
+  * `x 0x1337` - examine at address 0x1337
+  * `x/20wx 0x1337` - examine 20 words (32 bit values) from 0x1337
+  * `x/s 0x1337` - examine string at 0x1337
+  * `att 1234` - attach to running process 1234
+  * `set $<reg>=value` - set the register to the value. Eg: `set $ebx=1`
+* Heap commands:
+  * `heap` - view overview of the heap
+  * `bins` - view current heap bins
+  * `vis_heap_chunks <address> <num>` - view a number of heap chunks from the specified address. There is no way to show all heap chunks
+
+### Ropper
+
+* [Ropper](https://github.com/sashs/Ropper) is a tool to find gadgets for use in ROP chains
+* View all gadgets
+  * `ropper -f <binary>`
+* Search for gadget
+  * `ropper -f <binary> --search '<instruction>'`
+  * Eg: `ropper -f <binary> --search 'pop rdi; ret;'`
+  * Eg with placeholders: `ropper -f <binary> --search 'pop ???; ret;'`
+* Search for strings
+  * `ropper -f <binary> --search '<string>'`
+
+### Miscellaneous
+
+* `strace` - trace system calls during binary execution
+  * `strace ./binary`
+* `ltrace` - trace library calls during binary execution
+  * `ltrace ./binary`
+* [checksec](https://www.trapkit.de/tools/checksec/) - a tool to check the properties of executables
+  * `checksec <binary>`
+* `dmesg` - view segmentation faults and their locations, from processes
+
 ## Digital Forensics
+
 * [pkcrack](https://github.com/keyunluo/pkcrack) - known plaintext attack (KPA) to break password protected zips
   * `pkcrack -C encrypted-ZIP -c ciphertext_filename -P plaintext-ZIP -p plaintext_filename -d decrypted_file -a`
 
