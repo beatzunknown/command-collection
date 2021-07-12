@@ -53,6 +53,8 @@
   * `objdump -t <binary>`
 * Disassemble binary with Intel syntax
   * `objdump -d -Mintel <binary>`
+* View contents of a section (hexdump)
+  * `objdump -s -j .<section> <binary>`
 
 ### Pwndbg
 
