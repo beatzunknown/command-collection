@@ -47,12 +47,24 @@
 ## RE / Binary Exploitation
 
 ### objdump
-
-
+* View file header information
+  * `objdump -f <binary>`
+* View symbol table
+  * `objdump -t <binary>`
+* Disassemble binary with Intel syntax
+  * `objdump -d -Mintel <binary>`
 
 ### Pwndbg
 
 * [Pwndbg](https://github.com/pwndbg/pwndbg) is a GDB plug-in to assist with reverse engineering and exploitation development
+* Debug an executable:
+  * `gdb <binary>`
+* Attach a process to gdb
+  * `gdb -p <process id>`
+* Execute GDB commands upon start
+  * `gdb -ex "<commands>" <binary>`
+* Start GDB with specified arguments to pass in
+  * `gdb --args <binary> <arg1> <arg2> ...`
 * Standard GDB commands:
   * `b 0x1337` - break at address 0x1337
   * `c` - continue execution until the next breakpoint or end of program
@@ -67,6 +79,28 @@
   * `heap` - view overview of the heap
   * `bins` - view current heap bins
   * `vis_heap_chunks <address> <num>` - view a number of heap chunks from the specified address. There is no way to show all heap chunks
+
+### rabin2
+* `rabin2` is a tool to extract information about binary files. It comes bundles with `radare2`.
+* View general information about the binary
+  * `rabin2 -I <binary>`
+* View a list of linked libraries
+  * `rabin2 -l <binary>`
+* View a list of imported library functions
+  * `rabin2 -i <binary>`
+* View a list of string literal in the binary
+  * `rabin2 -z <binary>`
+
+### readelf
+* `readelf` is a Linux tool to display information about the contents of ELF binary files.
+* Display ELF file header
+  * `readelf -h <file>`
+* Display the program headers
+  * `readelf -l <file>`
+* Display the sections headers
+  * `readelf -S <file>`
+* Display the symbol table
+  * `readelf -s <file>`
 
 ### Ropper
 
