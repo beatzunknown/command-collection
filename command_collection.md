@@ -115,6 +115,9 @@
   * Eg with placeholders: `ropper -f <binary> --search 'pop ???; ret;'`
 * Search for strings
   * `ropper -f <binary> --search '<string>'`
+* Filter our gadgets with bad bytes
+  * `ropper -f <binary> -b <bytes>`
+  * Eg to filter newline and null: `ropper -f <binary> -b 000a`
 
 ### Miscellaneous
 
@@ -125,6 +128,19 @@
 * [checksec](https://www.trapkit.de/tools/checksec/) - a tool to check the properties of executables
   * `checksec <binary>`
 * `dmesg` - view segmentation faults and their locations, from processes
+
+## Web Exploitation
+
+### BurpSuite
+
+#### Intruder
+
+* Used for attack automation by taking a base HTTP request and modifying various aspects of it
+* Various attack types:
+  * Sniper - Single wordlist. Used to enumerate each parameter one at a time (while leaving rest of parameters blank).
+  * Battering Ram - Single wordlist. Used to enumerate all parameters, using the same payload in each
+  * Pitchfork - Multiple wordlists. Enumerates over multiple parameters at the same time, by essentially creating a zip list of the wordlists
+  * Cluster bomb - Multiple wordlists. Enumerates over all parameters by using all permutations of wordlists.
 
 ## Digital Forensics
 
