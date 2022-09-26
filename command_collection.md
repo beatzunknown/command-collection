@@ -46,6 +46,13 @@
 * Prefix each result with offset within file, in hex
   * `strings -t x <filename>`
 
+### mkvtools
+
+* Remove title from file
+  * `mkvpropedit -d title <filename>`
+* Set first subtitle file as default
+  * `mkvpropedit --edit track:s1 --set flag-default=1 <filename>`
+
 ### Miscellaneous
 
 * `head` - extract first number of bytes from a file
